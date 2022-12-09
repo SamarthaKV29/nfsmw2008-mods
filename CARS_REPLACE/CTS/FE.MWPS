@@ -1,0 +1,20 @@
+##---------------------------------------------------
+## 2001 Lamborghini Diablo VT 6.0
+## Replaces Cadillac CTS
+## fe_attrib.bin patch script
+##---------------------------------------------------
+
+vpak GLOBAL\FE_ATTRIB.BIN frontend
+
+##---------------------------------------------------
+## Node: frontend/vehicles/north_america/cadillac/cts
+##---------------------------------------------------
+
+## required_bl_level
+patch	int8	bin:0x9b91	5
+
+## manufacturer
+patch	int32	bin:0x9b78	15
+
+## cost
+patch	int32	bin:0x9b84	120000

@@ -1,0 +1,582 @@
+##---------------------------------------------------
+## 2001 Lamborghini Diablo VT 6.0
+## Replaces Cadillac CTS
+## Attributes.bin #patch script
+##---------------------------------------------------
+
+
+memfile GLOBAL\GlobalMemoryFile.bin
+vpak GLOBAL\ATTRIBUTES.BIN db
+
+
+##---------------------------------------------------
+## Node: pvehicle/default/cars/racers/cts
+##---------------------------------------------------
+
+## MASS; self-explanatory; mass of car expressed in kilograms
+patch	float	bin:0x31388	1322
+
+## engineaudio[0]
+#patch	int32	bin:0x31534	0x87b387cc
+
+## engineaudio[1]
+#patch	int32	bin:0x31540	0x87b387cc
+
+## engineaudio[2]
+#patch	int32	bin:0x3154c	0x87b387cc
+
+##---------------------------------------------------
+## Node: ecar/default/racers/cts
+##---------------------------------------------------
+
+## RideHeight; in-race only; visible body height
+patch	float	bin:0x3eedc	1
+
+## TireSkidWidth; aka tire width
+## common value range is 2x0.225 for front wheels and 2x0.335 for rear wheels
+
+patch	float	bin:0x3eebc	0.235
+patch	float	bin:0x3eec0	0.235
+patch	float	bin:0x3eec4	0.335
+patch	float	bin:0x3eec8	0.335
+
+
+
+## TireOffsets
+## in format x, y, z, w
+## x axis; car front = +; car rear = -
+## y axis; left side = +; right = -
+## z axis; up = +; down = - note: will move WHEELS [up or down] regarding CAR BODY, during race body will be on normal level
+## unlike wheels that might be BELOW ground
+## w - wheel diameter scaling; default game values range between 0.31 [elise] and 0.35 [mustanggt]
+## NOTE: CAR BODY height will be changed to match wheel size
+## all axles have point 0 in center of line between front left and rear right wheel or between front right and rear left
+
+## front left
+patch	float	bin:0x3edf0	1.38
+patch	float	bin:0x3edf4	0.9118
+patch	float	bin:0x3edf8	0
+patch	float	bin:0x3edfc	0.33
+
+## front right
+patch	float	bin:0x3ee00	1.38
+patch	float	bin:0x3ee04	-0.9118
+patch	float	bin:0x3ee08	0
+patch	float	bin:0x3ee0c	0.33
+
+## rear right
+patch	float	bin:0x3ee10	-1.2563
+patch	float	bin:0x3ee14	-0.9600
+patch	float	bin:0x3ee18	0
+patch	float	bin:0x3ee1c	0.33
+
+## rear left
+patch	float	bin:0x3ee20	-1.2563
+patch	float	bin:0x3ee24	0.9600
+patch	float	bin:0x3ee28	0
+patch	float	bin:0x3ee2c	0.33
+
+
+## Kit Tireoffsets corrections
+## Kits are used just to change the car livery; so no offser is necessary
+
+#front
+patch   float   bin:0x3eef7	0
+patch	float	bin:0x3eef8	0
+patch	float	bin:0x3eef9	0 
+patch	float	bin:0x3eefa	0
+
+## rear
+patch   float   bin:0x3eee9	0
+patch   float   bin:0x3eeea	0
+patch   float   bin:0x3eeeb	0
+patch   float   bin:0x3eeec	0
+
+
+## WheelSpokeCount; number of spokes in rims
+## common value range N/A since it differs per car
+patch	int8	bin:0x3eefc	5
+
+## Camber front
+patch	float	bin:0x3eed0	0.16
+
+## Camber rear
+patch	float	bin:0x3eed8	0.12
+
+## BodyDive; maximum vector-based movement of front of car body
+patch	float	bin:0x3ee98	1
+patch	float	bin:0x3ee9c	1
+patch	float	bin:0x3eea0	6
+
+## BodySquat; maximum vector-based movement of rear of car body
+patch	float	bin:0x3ee8c	1
+patch	float	bin:0x3ee90	1
+patch	float	bin:0x3ee94	6
+
+## BodyRoll; maximum vector-based movement of entire car body towards left or right
+## simply put - car body leaning sideways
+patch	float	bin:0x3ee80	1.75
+patch	float	bin:0x3ee84	1
+patch	float	bin:0x3ee88	7
+
+
+##---------------------------------------------------
+## Node: brakes/default/cts
+##---------------------------------------------------
+
+## BRAKES; overall braking power per axle
+## common value range is 300/400-650/700; mass dependent
+patch	float	bin:0x24510	400
+patch	float	bin:0x24514	650
+
+## EBRAKE; handbrake power; should be larger than BRAKES value by at least 10% and larger than overall car horsepower
+## common value range is 400-800; mass dependent
+patch	float	bin:0x24518	620
+
+## BRAKE_LOCK; BRAKES field values multiplier and braking force distribution ratio
+## common value range is 1.00 for front axle and 3.20-3.60 for rear axle
+patch	float	bin:0x24508	0.65
+patch	float	bin:0x2450c	3.50
+
+
+
+
+##---------------------------------------------------
+## Node: brakes/default/cts/cts_top
+##---------------------------------------------------
+
+## BRAKES
+patch	float	bin:0x2472c	480
+patch	float	bin:0x24730	690
+
+## EBRAKE
+patch	float	bin:0x24734	800
+
+## BRAKE_LOCK
+patch	float	bin:0x24724	0.65
+patch	float	bin:0x24728	3.50
+
+
+
+##---------------------------------------------------
+## Node: chassis/default/cts
+##---------------------------------------------------
+
+## WHEEL_BASE; distance between the centers of the front and rear wheels
+## common value range N/A since it differs per car
+patch	float	bin:0x8c64	2.650
+
+
+## DRAG_COEFFICIENT; air resistance of object travelling in a non-vacuum environment such as air
+## common value range is 0.25-0.42
+patch	float	bin:0x8c80	0.30
+
+
+## SHOCK_VALVING; maximum air pressure in the shock absorber air chamber in pounds per square inch
+## common value range is 2x15-2x24
+patch	float	bin:0x8c50	20
+patch	float	bin:0x8c54	20
+
+## RIDE_HEIGHT; aka ground clearance
+## common value range is 2x6-2x9
+patch	float	bin:0x8c28	6.80
+patch	float	bin:0x8c2c	6.80
+
+## ROLL_CENTER; vertical center of gravity [probably in inches]
+## common value range is 8-10
+patch	float	bin:0x8c60	8.30
+
+## SHOCK_STIFFNESS; minimum pressure inside shock absorber in pounds per square inch
+## common value range is 2x30-2x80; acceleration and mass-dependent
+patch	float	bin:0x8c40	60
+patch	float	bin:0x8c44	60
+
+## SHOCK_EXT_STIFFNESS; maximum pressure inside shock absorber in pounds per square inch
+## common value range is 2x40-2x80; acceleration and mass dependent
+patch	float	bin:0x8c38	80
+patch	float	bin:0x8c3c	80
+
+## SPRING_STIFFNESS; overall coilover pressure in pounds square inch
+## common value range is 2x400-2x700
+patch	float	bin:0x8c48	580
+patch	float	bin:0x8c4c	560
+
+## SHOCK_BLOWOUT
+patch	float	bin:0x8c68	5
+
+## TRACK_WIDTH; distance between wheel centers based on a single axle
+## common value range N/A since it differs per car
+patch	float	bin:0x8c30	1.610
+patch	float	bin:0x8c34	1.670
+
+## AERO_COEFFICIENT; maximum car downforce in pounds per square inch divided by 1000
+## common value range is 0.15-0.30
+patch	float	bin:0x8c78	0.211
+
+## TRAVEL; maximum size by which a spring can compress in inches
+## common value range is 2x6-2x8; acceleration and mass dependent
+patch	float	bin:0x8c20	6.50
+patch	float	bin:0x8c24	6.50
+
+## AERO_CG; overall distribution of aerodynamic force on the car body; values between 0 and 100; 0 for max in rear, 100 for max in front
+## common value range is 47-51
+patch	float	bin:0x8c6c	50.0
+
+## SHOCK_DIGRESSION; digressive shocks provide smoother ride at higher speeds and absorb body roll also improving cornering; smaller value for smoother ride
+## common value range is 2x0.1-2x0.5
+patch	float	bin:0x8c10	0.21
+patch	float	bin:0x8c14	0.21
+
+## SWAYBAR_STIFFNESS; maximum pressure inside sway bar in pounds per square inch
+## common value range is 2x200-2x450; acceleration and mass dependent
+patch	float	bin:0x8c58	325
+patch	float	bin:0x8c5c	300
+
+## FRONT_AXLE; front axle diameter in inches
+## common value range is 1.2-1.5
+patch	float	bin:0x8c74	1.400
+
+## FRONT_WEIGHT_BIAS; overall mass distribution; values from 0 to 100; 0 for max rear bias; 100 for max front bias
+## common value range is 51-55
+patch	float	bin:0x8c7c	41
+
+
+##---------------------------------------------------
+## Node: chassis/default/cts/cts_top
+##---------------------------------------------------
+
+## WHEEL_BASE; distance between the centers of the front and rear wheels
+## common value range N/A since it differs per car
+patch	float	bin:0x9e84	2.650
+
+
+## DRAG_COEFFICIENT; air resistance of object travelling in a non-vacuum environment such as air
+## common value range is 0.25-0.42
+patch	float	bin:0x9ea0	0.20
+
+
+## SHOCK_VALVING; maximum air pressure in the shock absorber air chamber in pounds per square inch
+## common value range is 2x15-2x24
+patch	float	bin:0x9e70	22
+patch	float	bin:0x9e74	22
+
+## RIDE_HEIGHT; aka ground clearance
+## common value range is 2x6-2x9
+patch	float	bin:0x9e48	6.70
+patch	float	bin:0x9e4c	6.70
+
+## ROLL_CENTER; vertical center of gravity [probably in inches]
+## common value range is 8-10
+patch	float	bin:0x9e80	8.20
+
+## SHOCK_STIFFNESS; minimum pressure inside shock absorber in pounds per square inch
+## common value range is 2x30-2x80; acceleration and mass-dependent
+patch	float	bin:0x9e60	67
+patch	float	bin:0x9e64	67
+
+## SHOCK_EXT_STIFFNESS; maximum pressure inside shock absorber in pounds per square inch
+## common value range is 2x40-2x80; acceleration and mass dependent
+patch	float	bin:0x9e58	87
+patch	float	bin:0x9e5c	87
+
+## SPRING_STIFFNESS; overall coilover pressure in pounds square inch
+## common value range is 2x400-2x700
+patch	float	bin:0x9e68	610
+patch	float	bin:0x9e6c	590
+
+## SHOCK_BLOWOUT
+patch	float	bin:0x9e88	5
+
+## TRACK_WIDTH; distance between wheel centers based on a single axle
+## common value range N/A since it differs per car
+patch	float	bin:0x9e50	1.610
+patch	float	bin:0x9e54	1.670
+
+## AERO_COEFFICIENT; maximum car downforce in pounds per square inch divided by 1000
+## common value range is 0.15-0.30
+patch	float	bin:0x9e98	0.231
+
+## TRAVEL; maximum size by which a spring can compress in inches
+## common value range is 2x6-2x8; acceleration and mass dependent
+patch	float	bin:0x9e40	6.50
+patch	float	bin:0x9e44	6.50
+
+## AERO_CG; overall distribution of aerodynamic force on the car body; values between 0 and 100; 0 for max in rear, 100 for max in front
+## common value range is 47-51
+patch	float	bin:0x9e8c	50.0
+
+## SHOCK_DIGRESSION; digressive shocks provide smoother ride at higher speeds and absorb body roll also improving cornering; smaller value for smoother ride
+## common value range is 2x0.1-2x0.5
+patch	float	bin:0x9e30	0.195
+patch	float	bin:0x9e34	0.195
+
+## SWAYBAR_STIFFNESS; maximum pressure inside sway bar in pounds per square inch
+## common value range is 2x200-2x450; acceleration and mass dependent
+patch	float	bin:0x9e78	335
+patch	float	bin:0x9e7c	310
+
+## FRONT_AXLE; front axle diameter in inches
+## common value range is 1.2-1.5
+patch	float	bin:0x9e94	1.400
+
+## FRONT_WEIGHT_BIAS; overall mass distribution; values from 0 to 100; 0 for max rear bias; 100 for max front bias
+## common value range is 51-55
+patch	float	bin:0x9e9c	41
+
+
+
+##---------------------------------------------------
+## Node: engine/default/cts
+##---------------------------------------------------
+
+## IDLE; minimum operating speed of engine necessary to sustain its work but not enough to move drivetrain components
+## common value range is 800-950
+patch	float	bin:0x1338c	900
+
+## TORQUE; self-explanatory
+## common value range N/A since it differs per car
+patch	float	bin:0x13338	275
+patch	float	bin:0x1333c	480
+patch	float	bin:0x13340	555
+patch	float	bin:0x13344	580
+patch	float	bin:0x13348	610
+patch	float	bin:0x1334c	620
+patch	float	bin:0x13350	600
+patch	float	bin:0x13354	580
+patch	float	bin:0x13358	525
+
+## MAX_RPM; maximum operating speed of engine before its destruction [drag racing only]
+## common value range N/A since it differs per car
+patch	float	bin:0x13384	8000
+
+## FLYWHEEL_MASS; the higher the mass, the higher the maximum inertia moment and therefore larger amounts of kinetic energy can be stored
+## common value range is 9-15
+patch	float	bin:0x13380	12
+
+## RED_LINE; maximum safe operating speed of engine
+## common value range N/A since it differs per car
+patch	float	bin:0x13388	7600
+
+
+##---------------------------------------------------
+## Node: engine/default/cts/cts_top
+##---------------------------------------------------
+
+## IDLE; minimum operating speed of engine necessary to sustain its work but not enough to move drivetrain components
+## common value range is 800-950
+patch	float	bin:0x13e0c	950
+
+## TORQUE; self-explanatory
+## common value range N/A since it differs per car
+patch	float	bin:0x13db8	275
+patch	float	bin:0x13dbc	480
+patch	float	bin:0x13dc0	555
+patch	float	bin:0x13dc4	580
+patch	float	bin:0x13dc8	610
+patch	float	bin:0x13dcc	620
+patch	float	bin:0x13dd0	600
+patch	float	bin:0x13dd4	580
+patch	float	bin:0x13dd8	560
+
+
+## MAX_RPM; maximum operating speed of engine before its destruction [drag racing only]
+## common value range N/A since it differs per car
+patch	float	bin:0x13e04	8200
+
+## FLYWHEEL_MASS; the higher the mass, the higher the maximum inertia moment and therefore larger amounts of kinetic energy can be stored
+## common value range is 9-15
+patch	float	bin:0x13e00	10
+
+## RED_LINE; maximum safe operating speed of engine
+## common value range N/A since it differs per car
+patch	float	bin:0x13e08	7800
+
+
+##---------------------------------------------------
+## Node: tires/default/cts
+##---------------------------------------------------
+
+## SECTION_WIDTH
+patch	float	bin:0x225a0	235
+patch	float	bin:0x225a4	335
+
+## RIM SIZE
+patch	float	bin:0x22590	18
+patch	float	bin:0x22594	18 
+
+## STATIC_GRIP; static grip is the amount of friction the tires are able to produce when they are not spinning, though they can be rolling
+## common value range N/A since it differs per car; mass and acceleration dependent
+patch	float	bin:0x22598	1.75
+patch	float	bin:0x2259c	1.82
+
+## DYNAMIC_GRIP; amount of friction the tires produce when traction is broken, ie when the car is sliding or in a burnout
+## common value range N/A since it differs per car; mass and acceleration dependent
+patch	float	bin:0x22580	1.485
+patch	float	bin:0x22584	1.52
+
+## YAW_SPEED; self-explanatory; rate at which car enters yaw state
+## common value range is 0.30-0.70
+patch	float	bin:0x225ac	0.36
+
+## STEERING; steering ratio; value of 1.00 means that turning steering wheel by 360 degrees will turn wheels by 36 degrees
+## common value range is 0.90-1.10
+patch	float	bin:0x225a8	1.00
+
+
+
+##---------------------------------------------------
+## Node: tires/default/cts/cts_top
+##---------------------------------------------------
+
+## SECTION_WIDTH
+patch	float	bin:0x23310	235
+patch	float	bin:0x23314	335
+
+## RIM SIZE
+patch	float	bin:0x23300	18
+patch	float	bin:0x23304	18 
+
+## STATIC_GRIP; static grip is the amount of friction the tires are able to produce when they are not spinning, though they can be rolling
+## common value range N/A since it differs per car; mass and acceleration dependent
+patch	float	bin:0x23308	1.79
+patch	float	bin:0x2330c	1.86
+
+## DYNAMIC_GRIP; amount of friction the tires produce when traction is broken, ie when the car is sliding or in a burnout
+## common value range N/A since it differs per car; mass and acceleration dependent
+patch	float	bin:0x232f0	1.525
+patch	float	bin:0x232f4	1.56
+
+## YAW_SPEED; self-explanatory; rate at which car enters yaw state
+## common value range is 0.30-0.70
+patch	float	bin:0x2331c	0.34
+
+## STEERING; steering ratio; value of 1.00 means that turning steering wheel by 360 degrees will turn wheels by 36 degrees
+## common value range is 0.90-1.10
+patch	float	bin:0x23318	1.00
+
+
+##---------------------------------------------------
+## Node: transmission/default/cts
+##---------------------------------------------------
+
+## GEAR_COUNT; 1st GEAR_RATIO offset -6; total amount of gears including reverse, neutral and rest of gears
+## common value range is 7-9
+patch	int16	bin:0x1f38e	7
+
+
+## GEAR_RATIO; drivetrain power transfer ratios
+## common value range N/A since it differs per car
+patch	float	bin:0x1f394	2.12
+patch	float	bin:0x1f398	0
+patch	float	bin:0x1f39c	2.31
+patch	float	bin:0x1f3a0	1.72
+patch	float	bin:0x1f3a4	1.22
+patch	float	bin:0x1f3a8	0.88
+patch	float	bin:0x1f3ac	0.68
+
+
+## DIFFERENTIAL; self-explanatory; wheel speed reduction ratio during cornering
+## common value range is 2x0.60-2x0.80; 3x0.60-3x0.80 if car is AWD
+patch	float	bin:0x1f3c0	0.68
+patch	float	bin:0x1f3c4	0.68
+patch	float	bin:0x1f3c8	0.68
+
+## TORQUE_SPLIT; torque-to-axle transfer ratio; 0 for RWD, 0.5 for AWD and 1 for FWD
+## common value range N/A since it differs per car
+patch	float	bin:0x1f3fc	0.37
+
+## FINAL_GEAR; final gear ratio determining top speed
+## common value range N/A since it differs per car
+patch	float	bin:0x1f40c	4.04
+
+## CLUTCH_SLIP; self-explanatory; ratio of possible clutch slip
+## common value range is 0.70-0.90
+patch	float	bin:0x1f400	0.74
+
+## TORQUE_CONVERTER; percentage ratio of torque converter efficiency with automatic transmission usage
+## common value range is 0.20-0.80
+patch	float	bin:0x1f3f8	0.80
+
+
+##---------------------------------------------------
+## Node: transmission/default/cts/cts_top
+##---------------------------------------------------
+
+## GEAR_COUNT; 1st GEAR_RATIO offset -6; total amount of gears including reverse, neutral and rest of gears
+## common value range is 7-9
+patch	int16	bin:0x1fbce	7
+
+
+## GEAR_RATIO; drivetrain power transfer ratios
+## common value range N/A since it differs per car
+patch	float	bin:0x1fbd4	2.12
+patch	float	bin:0x1fbd8	0
+patch	float	bin:0x1fbdc	2.31
+patch	float	bin:0x1fbe0	1.52
+patch	float	bin:0x1fbe4	1.12
+patch	float	bin:0x1fbe8	0.88
+patch	float	bin:0x1fbec	0.68
+
+
+## DIFFERENTIAL; self-explanatory; wheel speed reduction ratio during cornering
+## common value range is 2x0.60-2x0.80; 3x0.60-3x0.80 if car is AWD
+patch	float	bin:0x1fc00	0.68
+patch	float	bin:0x1fc04	0.68
+patch	float	bin:0x1fc08	0.68
+
+## TORQUE_SPLIT; torque-to-axle transfer ratio; 0 for RWD, 0.5 for AWD and 1 for FWD
+## common value range N/A since it differs per car
+patch	float	bin:0x1fcfc	0.37
+
+## FINAL_GEAR; final gear ratio determining top speed
+## common value range N/A since it differs per car
+patch	float	bin:0x1fc4c	3.000
+
+## CLUTCH_SLIP; self-explanatory; ratio of possible clutch slip
+## common value range is 0.70-0.90
+patch	float	bin:0x1fc40	0.88
+
+## TORQUE_CONVERTER; percentage ratio of torque converter efficiency with automatic transmission usage
+## common value range is 0.20-0.80
+patch	float	bin:0x1fc38	0.80
+
+##---------------------------------------------------
+## Node: induction/default/cts_base
+##---------------------------------------------------
+
+## AIR PRESSURE
+patch	float	bin:0x11fa4	0.0
+
+## HIGH BOOST
+patch	float	bin:0x11fb8	0.0
+
+## LOW BOOST
+patch	float	bin:0x11fa0	0.0
+
+## INDUCTION MULTIPLIER
+patch	float	bin:0x11fb0	0.0
+
+## PSI; maximum pressure of air taken into the turbine
+## common value range is 12-15
+patch	float	bin:0x11fb4	0
+
+
+##---------------------------------------------------
+## Node: induction/default/cts/cts_top
+##---------------------------------------------------
+
+## AIR PRESSURE
+patch	float	bin:0x122d0	0.0
+
+## HIGH BOOST
+patch	float	bin:0x122e4	0.0
+
+## LOW BOOST
+patch	float	bin:0x122cc	0.0
+
+## INDUCTION MULTIPLIER
+patch	float	bin:0x122dc	0.0
+
+## PSI; maximum pressure of air taken into the turbine
+## common value range is 12-15
+patch	float	bin:0x122e0	0

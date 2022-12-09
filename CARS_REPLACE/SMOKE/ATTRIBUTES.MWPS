@@ -1,0 +1,67 @@
+##---------------------------------------------------
+## Realistic Smoke Mod by Alexc12fr
+## Attributes.bin patch script
+##---------------------------------------------------
+
+memfile GLOBAL\GlobalMemoryFile.bin
+vpak GLOBAL\ATTRIBUTES.BIN db
+
+##---------------------------------------------
+## Node: emitterdata/default/emtd_sk_asphaltfastsmk1
+##---------------------------------------------
+
+patch	float bin:0x4a5a4	40	##emtd_sk_asphaltfastsmk1
+patch	float bin:0x4cd04	40	##emtd_sl_asphaltfastsmk1
+patch	float bin:0x4d064	40	##emtd_sk_extrasmoke1
+patch	float bin:0x4e804	40	##emtd_sk_asphaltfastsmk2
+patch	float bin:0x4eb64	25	##emtd_sk_asphaltsmokedark1
+
+##---------------------------------------------
+## Node: emitterdata/default/emtd_sk_asphaltfastsmk1
+##---------------------------------------------
+
+##emtd_sk_asphaltfastsmk1
+patch	float bin:0x4a520	0.6
+patch	float bin:0x4a524	2.6
+patch	float bin:0x4a528	2.6
+patch	float bin:0x4a52c	2.1
+
+##---------------------------------------------
+## Node: emitterdata/default/emtd_sk_asphaltfastsmk1
+##---------------------------------------------
+
+##emtd_sl_asphaltfastsmk1
+patch	float bin:0x4cc80	4.1
+patch	float bin:0x4cc84	5.6
+patch	float bin:0x4cc88	5.6
+patch	float bin:0x4cc8c	4.1
+
+##---------------------------------------------
+## Node: emitterdata/default/emtd_sk_asphaltfastsmk1
+##---------------------------------------------
+
+##emtd_sk_extrasmoke1
+patch	float bin:0x4cfe0	3.60
+patch	float bin:0x4cfe4	4.35
+patch	float bin:0x4cfe8	4.35
+patch	float bin:0x4cfec	4.35
+
+##---------------------------------------------
+## Node: emitterdata/default/emtd_sk_asphaltfastsmk1
+##---------------------------------------------
+
+##emtd_sk_asphaltfastsmk2
+patch	float bin:0x4e780	0.6
+patch	float bin:0x4e784	1.3
+patch	float bin:0x4e788	2.6
+patch	float bin:0x4e78c	2.1
+
+##---------------------------------------------
+## Node: emitterdata/default/emtd_sk_asphaltfastsmk1
+##---------------------------------------------
+
+##emtd_sk_asphaltsmokedark1
+patch	float bin:0x4eae0	4.35
+patch	float bin:0x4eae4	4.8
+patch	float bin:0x4eae8	5.3
+patch	float bin:0x4eaec	5.1

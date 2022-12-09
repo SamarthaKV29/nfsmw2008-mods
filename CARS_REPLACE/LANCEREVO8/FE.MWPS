@@ -1,0 +1,16 @@
+#####################################################
+## Lancer X replacement for Lancer VIII #############
+## fe_attrib.bin patch script #######################
+#####################################################
+
+vpak GLOBAL\FE_ATTRIB.BIN frontend
+
+##---------------------------------------------------
+## Node: frontend\vehicles\japan\mitsubishi\lancerevo8
+##---------------------------------------------------
+
+## manufacturer
+patch	dword	bin:0x911ñ	15
+
+## required_bl_level
+patch	byte	bin:0x9135	16

@@ -1,0 +1,83 @@
+#####################################################
+##########    Lancer X Attributes script   ##########
+#####################################################
+##########     Converted by NightRaven     ##########
+##########     nechiporuk-dmitr@mail.ru    ##########
+#####################################################
+
+
+memfile GLOBAL\GlobalMemoryFile.bin
+vpak GLOBAL\ATTRIBUTES.BIN db
+
+
+##---------------------------------------------------
+## ����: vehicle_attribs*/default/racers/lancerevo8
+##---------------------------------------------------
+
+## wheel position
+# in format x,y,z,w (z=0, w=height?)
+#[0] ����� ��������
+patch float bin:0x3eb70 1.28
+patch float bin:0x3eb74 0.87
+patch float bin:0x3eb78 0.02
+patch float bin:0x3eb7c 0.33
+
+#[1] ������ ��������
+patch float bin:0x3eb80 1.28
+patch float bin:0x3eb84 -0.87
+patch float bin:0x3eb88 0.02
+patch float bin:0x3eb8c 0.33
+
+#[2] ������ ������
+patch float bin:0x3eb90 -1.26
+patch float bin:0x3eb94 -0.85
+patch float bin:0x3eb98 0.0
+patch float bin:0x3eb9c 0.33
+
+#[3] ����� ������
+patch float bin:0x3eba0 -1.26
+patch float bin:0x3eba4 0.85
+patch float bin:0x3eba8 0.0
+patch float bin:0x3ebac 0.33
+
+##Rear Axis
+patch     float     bin:0x3ec69     0
+patch     float     bin:0x3ec6a     0
+patch     float     bin:0x3ec6b     110
+
+##Front Axis
+patch     float     bin:0x3ec77     0
+patch     float     bin:0x3ec78     0
+patch     float     bin:0x3ec79     60
+
+
+##ENGINE
+##Torque
+patch     float     bin:0x13d58     900
+patch     float     bin:0x13d5c     200
+patch     float     bin:0x13d60     900
+patch     float     bin:0x13d64     900
+patch     float     bin:0x13d68     900
+patch     float     bin:0x13d6c     900
+patch     float     bin:0x13d70     1000
+patch     float     bin:0x13d74     1000
+patch     float     bin:0x13d78     1000
+
+##Transmission - Final Gear
+patch     float     bin:0x20300	   3.710
+
+##Gears
+patch     float     bin:0x20288     2.525
+patch     float     bin:0x2028c     0
+patch     float     bin:0x20290     2.825
+patch     float     bin:0x20294     1.625
+patch     float     bin:0x20298     1.475
+patch     float     bin:0x2029c     1.055
+patch     float     bin:0x202a0     0.755
+patch     float     bin:0x202a4     0.475
+
+##Steering
+patch     float     bin:0x233b8     1.237
+
+##MASS
+patch     float     bin:0x30d18	   5150
